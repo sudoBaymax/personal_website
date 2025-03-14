@@ -1,0 +1,42 @@
+.terminal {
+  background-color: #1c2b2b; /* Dark background for terminal */
+  color: #d1d5db; /* Light gray text color typical of terminals */
+  padding: 1em;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace; /* Monospaced font */
+  height: 300px; /* Fixed height for terminal */
+  overflow-y: auto;
+  border: 1px solid #444; /* Border to resemble terminal */
+  text-align: left; /* Align text to the left */
+}
+
+.prompt {
+  color: #98c379; /* Color for the user prompt */
+}
+
+.directory {
+  color: #58a6ff; /* Color for directories */
+}
+
+.executable {
+  color: #98c379; /* Color for executables */
+}
+
+.error {
+  color: #e06c75; /* Color for errors */
+}
+
+.symlink {
+  color: #56b6c2; /* Color for symbolic links */
+}
+
+.input {
+  width: calc(100% - 150px); /* Adjust input width to accommodate prompt */
+  border: none;
+  background: none;
+  color: #d1d5db; /* Match input text color with terminal */
+  outline: none;
+  font-family: inherit;
+  padding: 5px; /* Add padding for better input appearance */
+  margin-left: 5px; /* Add margin to separate from prompt */
+}
