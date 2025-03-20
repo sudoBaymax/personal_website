@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/Nav.css';
 import Logo from "../assets/logo/logo.png"; 
 
+
 function NavBar() {
     const [scrolling, setScrolling] = useState(false);
 
@@ -27,7 +28,7 @@ function NavBar() {
             <div className="menu">
                 <a href="#about" onClick={(e) => handleScrollTo(e, 'about')}>About</a>
                 <a href="#contact" onClick={(e) => handleScrollTo(e, 'contact')}>Contact</a>
-                <a className="resume-button" href="https://jatou.ca/resume">Resume</a>
+                <a className="resume-button" href="https://jatou.ca/resume/">Resume</a>
             </div>
         </nav>
     );

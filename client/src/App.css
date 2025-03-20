@@ -3,18 +3,32 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Moves content higher */
   align-items: center;
-  background-color: #ffffff;
-  overflow: hidden;
+  padding-top: 10vh; /* Adjust padding to control height */
   color: #111111;
+  width: 50%;
+  position: relative;
+  margin: auto;
 }
+
+.landing-wrapper p {
+  font-size: 21px;
+  text-align: center;
+  padding-bottom: 1rem; 
+  width: 550px;
+}
+
+.landing-wrapper h1 {
+  text-align: center;
+}
+
 
 /* Stack container */
 .app-stack {
   position: relative;
-  width: 220px;
-  height: 280px;
+  width: 200px;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,4 +77,33 @@
   width: 80%;
   height: auto;
   border-radius: 20px;
+}
+
+
+.landing-wrapper button {
+  display: inline-block;
+  background: #111111;
+  color: white;
+  padding: 12px 17px;
+  border-radius: 34px;
+  font-size: 21px;
+  transition: background 0.3s ease;
+}
+
+.landing-wrapper button:hover {
+  background: #292929;
+  color: white;
+}
+
+.CTA {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CTA span {
+  font-weight: bold;
+  font-size: 21px;
+  margin-left: 50px;
+  cursor: pointer;
 }

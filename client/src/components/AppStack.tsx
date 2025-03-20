@@ -19,7 +19,7 @@ export default function AppStack() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % apps.length);
-    }, 2000); 
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
@@ -28,24 +28,24 @@ export default function AppStack() {
       <motion.div
         key={`back-${index}`}
         className="app-card back-card"
-        initial={{ y: -45, scale: 0.75, opacity: 1 }}
-        animate={{ y: -30, scale: 0.85, opacity: 1 }}
+        initial={{ y: -30, scale: 0.6, opacity: 1 }}
+        animate={{ y: -20, scale: 0.7, opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       />
 
       <motion.div
         key={`middle-${index}`}
         className="app-card middle-card"
-        initial={{ y: -50, scale: 0.75, opacity: 1 }}
-        animate={{ y: -20, scale: 0.85, opacity: 1 }}
+        initial={{ y: -35, scale: 0.6, opacity: 1 }}
+        animate={{ y: -15, scale: 0.7, opacity: 1 }}
         transition={{ duration: 0.1, ease: "easeInOut" }}
       />
 
       <motion.div
         key={index}
         className="app-card front-card"
-        initial={{ scale: 1, y: -20, opacity: 0 }}
-        animate={{ scale: 1.1, y: 10, opacity: 1 }}
+        initial={{ scale: 0.8, y: -15, opacity: 0 }}
+        animate={{ scale: 0.9, y: 5, opacity: 1 }}
         transition={{ duration: 0.1, ease: "easeInOut" }}
       >
         <motion.img
