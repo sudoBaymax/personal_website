@@ -24,7 +24,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  /* Removed display: flex; to allow for proper scrolling */
   place-items: center;
   min-width: 320px;
   min-height: 100vh;

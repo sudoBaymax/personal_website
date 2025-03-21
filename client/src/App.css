@@ -9,19 +9,28 @@
   color: #111111;
   width: 50%;
   margin: auto;
+  overflow-y: auto; /* Enable scrolling when content exceeds height */
+  max-height: 100vh; /* Set a maximum height */
+}
+
+/* Make sure the parent container allows scrolling */
+.wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
 }
 
 .landing-wrapper p {
   font-size: 21px;
   text-align: center;
-  padding-bottom: 1rem; 
+  padding-bottom: 1rem;
   width: 550px;
+  max-width: 100%; /* Make it responsive */
 }
 
 .landing-wrapper h1 {
   text-align: center;
 }
-
 
 /* Stack container */
 .app-stack {
@@ -32,6 +41,7 @@
   justify-content: center;
   align-items: center;
   overflow: visible;
+  margin: 30px 0; /* Add some margin to prevent content overlap */
 }
 
 /* General card styles */
@@ -78,7 +88,6 @@
   border-radius: 20px;
 }
 
-
 .landing-wrapper button {
   display: inline-block;
   background: #111111;
@@ -87,6 +96,7 @@
   border-radius: 34px;
   font-size: 21px;
   transition: background 0.3s ease;
+  margin: 20px 0; /* Add margin for better spacing */
 }
 
 .landing-wrapper button:hover {
@@ -98,6 +108,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  margin-bottom: 20px; /* Add bottom margin */
 }
 
 .CTA span {
@@ -105,4 +117,24 @@
   font-size: 21px;
   margin-left: 50px;
   cursor: pointer;
+}
+
+/* Add media query for better mobile responsiveness */
+@media (max-width: 768px) {
+  .landing-wrapper {
+    width: 90%;
+  }
+  
+  .landing-wrapper p {
+    width: 100%;
+  }
+  
+  .CTA {
+    flex-direction: column;
+  }
+  
+  .CTA span {
+    margin-left: 0;
+    margin-top: 15px;
+  }
 }
