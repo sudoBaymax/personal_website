@@ -2,7 +2,8 @@
 
 /* Navbar Wrapper */
 .wrapper {
-    position: fixed; /* Fixed navbar */
+    position: relative; /* Change to relative to allow scrolling */
+
     top: 0;
     left: 0;
     right: 0;
@@ -11,14 +12,15 @@
     backdrop-filter: blur(10px); /* Glassmorphism effect */
     z-index: 1000; /* Ensure it stays on top */
     font-family: "Albert Sans", sans-serif;
-    background-color: #ffffff
+    background-color: #ffffff;
 }
 
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 40%;
+    width: 55%; /* Change width to 100% */
+
     max-width: 1200px;
     background: rgba(120, 120, 120, 0.2); /* Transparent with slight opacity */
     backdrop-filter: blur(10px); /* Frosted glass effect */

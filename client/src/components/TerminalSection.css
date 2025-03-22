@@ -1,0 +1,19 @@
+.terminal {
+  background-color: #1e1e1e; /* Dark background */
+  color: #00ff00; /* Green text */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  max-height: 400px; /* Limit height */
+  overflow-y: auto; /* Enable scrolling */
+}
+
+.terminal-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.terminal-content {
+  white-space: pre; /* Preserve whitespace */
+}

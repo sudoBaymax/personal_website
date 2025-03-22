@@ -1,7 +1,8 @@
 import React from 'react';
+import TerminalSection from './components/TerminalSection'; // Import the new terminal section
 import NavBar from './components/NavBar';
 import LandingPage from './pages/LandingPage';
-import Terminal from './components/Terminal';
+import Footer from './components/Footer'; // Import the footer component
 import './App.css';
 
 function App() {
@@ -10,8 +11,9 @@ function App() {
       <NavBar /> 
       <div className="content-container">
         <LandingPage />
-        <Terminal />
+        <TerminalSection /> {/* Add the terminal section to the main layout */}
       </div>
+      <Footer /> {/* Add the footer to the main layout */}
     </div>
   );
 }
