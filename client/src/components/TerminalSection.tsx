@@ -6,8 +6,7 @@ const KaliTerminal = () => {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [output, setOutput] = useState<{ type: string; content: string }[]>([
-    { type: 'system', content: '┌──(root💀kali)-[~]' },
-    { type: 'system', content: '└─# ' }
+    { type: 'system', content: getPromptString('/root') }
   ]);
   const [pwd, setPwd] = useState<string>('/root');
   const [filesystem] = useState<{ [key: string]: { type: string; contents: any } }>({
@@ -36,6 +35,11 @@ const KaliTerminal = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Function needs to be defined before it's used in initial state
+  function getPromptString(currentPath: string): string {
+    return `┌──(root💀kali)-[${currentPath}]\n└─# `;
+  }
+
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
@@ -44,10 +48,6 @@ const KaliTerminal = () => {
       inputRef.current.focus();
     }
   }, [output]);
-
-  const getPrompt = () => {
-    return `┌──(root💀kali)-[${pwd}]\n└─# `;
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -102,7 +102,7 @@ const KaliTerminal = () => {
       }
     } else if (args.length === 2 && (command === 'cd' || command === 'cat')) {
       const path = args[1];
-      const currentDir = getCurrentDirectory(); // Ensure currentDir is defined
+      const currentDir = getCurrentDirectory();
 
       if (currentDir && currentDir.type === 'dir') {
         const entries = Object.keys(currentDir.contents);
@@ -122,7 +122,7 @@ const KaliTerminal = () => {
     if (pwd === '/root') return current;
     
     for (let i = 1; i < pathParts.length; i++) {
-      if (current.contents[pathParts[i]]) {
+      if (current.contents && current.contents[pathParts[i]]) {
         current = current.contents[pathParts[i]];
       } else {
         return null;
@@ -134,7 +134,8 @@ const KaliTerminal = () => {
 
   const processCommand = (): void => {
     if (!input.trim()) {
-      addOutput({ type: 'system', content: getPrompt() });
+      // Just clear input and return if empty
+      setInput('');
       return;
     }
     
@@ -142,8 +143,18 @@ const KaliTerminal = () => {
     setCommandHistory(prev => [input, ...prev]);
     setHistoryIndex(-1);
     
-    // Display the command
-    addOutput({ type: 'command', content: input });
+    // Create a new array with the current command (don't modify existing output)
+    const newOutput = [...output];
+    
+    // For visual clarity, remove the last line if it's a prompt
+    // This prevents doubled prompts in the display
+    if (newOutput.length > 0 && newOutput[newOutput.length - 1].type === 'system') {
+      // We're going to replace this with the command line
+      newOutput.pop();
+    }
+    
+    // Add the command with the current prompt
+    newOutput.push({ type: 'command', content: input });
     
     // Process command
     const args = input.split(' ');
@@ -153,23 +164,21 @@ const KaliTerminal = () => {
     // Add command output
     if (Array.isArray(result)) {
       result.forEach(line => {
-        addOutput({ type: 'output', content: line });
+        newOutput.push({ type: 'output', content: line });
       });
-    } else if (result) {
-      addOutput({ type: 'output', content: result });
+    } else if (result !== null) {
+      newOutput.push({ type: 'output', content: result });
     }
     
-    // Add new prompt
-    addOutput({ type: 'system', content: getPrompt() });
+    // Add new prompt - just once
+    newOutput.push({ type: 'system', content: getPromptString(pwd) });
     
+    // Update all output at once to prevent partial rendering
+    setOutput(newOutput);
     setInput('');
   };
 
-  const addOutput = (line: { type: string; content: string }): void => {
-    setOutput(prev => [...prev, line]);
-  };
-
-  const executeCommand = (command: string, args: string[]): string | string[] => {
+  const executeCommand = (command: string, args: string[]): string | string[] | null => {
     switch (command) {
       case 'help':
         return [
@@ -189,7 +198,7 @@ const KaliTerminal = () => {
         ];
         
       case 'ls': {
-        const dirPath: string = args.length > 0 ? args[0] : pwd;
+        const dirPath: string = args.length > 0 && !args[0].startsWith('-') ? args[0] : pwd;
 
         const showHidden = args.includes('-a') || args.includes('-la') || args.includes('-al');
         const longFormat = args.includes('-l') || args.includes('-la') || args.includes('-al');
@@ -252,7 +261,7 @@ const KaliTerminal = () => {
         let current = filesystem['/root'];
         
         for (let i = 1; i < pathParts.length; i++) {
-          if (current.contents[pathParts[i]] && current.contents[pathParts[i]].type === 'dir') {
+          if (current.contents && current.contents[pathParts[i]] && current.contents[pathParts[i]].type === 'dir') {
             current = current.contents[pathParts[i]];
           } else {
             return `cd: ${path}: No such file or directory`;
@@ -271,12 +280,11 @@ const KaliTerminal = () => {
         }
         
         const filePath: string = args[0];
-
-        const currentDir = getCurrentDirectory(); // Ensure currentDir is defined
+        const currentDir = getCurrentDirectory();
 
         if (!currentDir) return `cat: ${filePath}: No such file or directory`;
         
-        if (currentDir.contents[filePath]) {
+        if (currentDir.contents && currentDir.contents[filePath]) {
           const file = currentDir.contents[filePath];
           if (file.type === 'file') {
             return file.content;
@@ -289,7 +297,7 @@ const KaliTerminal = () => {
         
       case 'clear':
         setOutput([
-          { type: 'system', content: getPrompt() }
+          { type: 'system', content: getPromptString(pwd) }
         ]);
         return null;
         
@@ -415,13 +423,36 @@ const KaliTerminal = () => {
     }
   };
 
-  const colorizeOutput = (line: { type: string; content: string }): string => {
+  // Function to render the prompt and input line correctly
+  const renderTerminalLine = (line: { type: string; content: string }, index: number) => {
     if (line.type === 'command') {
-      return line.content;
+      // Split the prompt into its two lines
+      const promptLines = getPromptString(pwd).split('\n');
+      return (
+        <div key={index} className="whitespace-pre-wrap">
+          <span className="text-green-500">{promptLines[0]}</span>
+          <br />
+          <span className="text-green-500">{promptLines[1]}</span>
+          <span className="text-white">{line.content}</span>
+        </div>
+      );
     } else if (line.type === 'system') {
-      return line.content;
+      // System output is usually the prompt
+      return (
+        <div key={index} className="whitespace-pre-wrap text-green-500">
+          {line.content}
+        </div>
+      );
     } else {
-      return line.content;
+      // Regular output
+      return (
+        <div key={index} className={
+          line.type === 'error' ? "whitespace-pre-wrap text-red-500" : 
+          "whitespace-pre-wrap text-white"
+        }>
+          {line.content}
+        </div>
+      );
     }
   };
 
@@ -445,39 +476,22 @@ const KaliTerminal = () => {
         ref={terminalRef}
         className="h-96 overflow-y-auto p-2 font-mono text-sm"
       >
-        {output.map((line, index) => (
-          <div key={index} className="whitespace-pre-wrap">
-            {line.type === 'command' ? (
-              <div>
-                <span className="prompt">{getPrompt().split('\n')[0]}</span>
-                <br />
-                <span className="prompt">{getPrompt().split('\n')[1]}</span>
-                <span className="command-text">{line.content}</span>
-              </div>
-            ) : (
-              <span className={
-                line.type === 'system' ? "text-green-500" : 
-                line.type === 'error' ? "text-red-500" : 
-                "text-white"
-              }>
-                {colorizeOutput(line)}
-              </span>
-            )}
-          </div>
-        ))}
+        {output.map((line, index) => renderTerminalLine(line, index))}
         
-        <div className="terminal-input-line">
-          <span className="prompt">{getPrompt().split('\n')[1]}</span>
-          <input 
-            ref={inputRef} 
-            type="text" 
-            className="terminal-input" 
-            value={input} 
-            onChange={handleInputChange} 
-            onKeyDown={handleKeyDown} 
-            autoFocus 
-          />
-        </div>
+        {/* Input line only after the last prompt */}
+        {output.length > 0 && output[output.length - 1].type === 'system' && (
+          <div className="terminal-input-line flex">
+            <input 
+              ref={inputRef} 
+              type="text" 
+              className="terminal-input bg-transparent outline-none border-none text-white flex-grow" 
+              value={input} 
+              onChange={handleInputChange} 
+              onKeyDown={handleKeyDown} 
+              autoFocus 
+            />
+          </div>
+        )}
       </div>
     </div>
   );
