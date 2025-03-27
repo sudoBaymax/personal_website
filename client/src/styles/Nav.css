@@ -20,14 +20,14 @@
     align-items: center;
     justify-content: space-between;
     width: 55%; /* Change width to 100% */
-
+    position: fixed;
     max-width: 1200px;
     background: rgba(120, 120, 120, 0.2); /* Transparent with slight opacity */
     backdrop-filter: blur(10px); /* Frosted glass effect */
     -webkit-backdrop-filter: blur(10px); /* For Safari */
     border-radius: 50px;
     padding: 0px 10px;
-    margin: 10px auto;
+    margin: 10px 21%;
     border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border for depth */
 }
 

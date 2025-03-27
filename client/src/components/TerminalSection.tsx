@@ -131,10 +131,10 @@ const KaliTerminal = () => {
       processCommand();
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      navigateHistory(-1);
+      navigateHistory(1);
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      navigateHistory(1);
+      navigateHistory(-1);
     } else if (e.key === 'Tab') {
       e.preventDefault();
       autocompleteCommand();
