@@ -10,15 +10,21 @@ app.use(cors());
 
 const uri = process.env.MONGO_CLUSTER_URI;
 mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
 })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('MongoDB connection error:', err));
 
+app.use(express.static('public'));
+
 app.get("/", (req, res) => {
     res.send("MERN Backend is running");
 });
+
+app.get("/resume", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'resume.pdf'));
+});
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

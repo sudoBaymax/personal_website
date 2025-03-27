@@ -7,9 +7,10 @@
   align-items: center;
   padding-top: 10vh; /* Adjust padding to control height */
   color: #111111;
-  width: 50%;
-  margin: auto;
+  width: 90%;
+  margin: 75px auto;
   overflow-y: auto; /* Enable scrolling when content exceeds height */
+
 }
 
 .landing-wrapper p {
@@ -21,6 +22,7 @@
 
 .landing-wrapper h1 {
   text-align: center;
+  max-width: 70%;
 }
 
 

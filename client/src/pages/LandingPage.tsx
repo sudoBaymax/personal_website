@@ -3,7 +3,7 @@ import AppStack from "../components/AppStack"; // Import the new component
 
 function LandingPage() {
   return (
-      <div className="landing-wrapper flex flex-col items-center justify-center">
+    <div className="landing-wrapper flex flex-col items-center justify-center">
 
       {/* App Stack Animation */}
       <AppStack />
