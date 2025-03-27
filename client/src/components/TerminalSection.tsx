@@ -5,9 +5,14 @@ const KaliTerminal = () => {
   const [input, setInput] = useState<string>('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
+  function getPromptString(currentPath: string, input: string = ''): string {
+    return `┌──(root💀kali)-[${currentPath}]\n└─# ${input}`;
+  }
+  
   const [output, setOutput] = useState<{ type: string; content: string }[]>([
     { type: 'system', content: getPromptString('/root') }
   ]);
+  
   const [pwd, setPwd] = useState<string>('/root');
   const [filesystem] = useState<{ [key: string]: { type: string; contents: any } }>({
     '/root': {
@@ -36,9 +41,8 @@ const KaliTerminal = () => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    inputRef.current?.focus();
+    document.getElementById('terminal-end')?.scrollIntoView({ behavior: 'smooth' });
   }, [output]);
   
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -100,27 +104,16 @@ const KaliTerminal = () => {
         github: 'github.com/sudoBaymax/pokemon-finder'
       }
     ]
-  };
-
-  // Function needs to be defined before it's used in initial state
-  function getPromptString(currentPath: string): string {
-    return `┌──(root💀kali)-[${currentPath}]\n└─# `;
   }
 
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    inputRef.current?.focus();
+    document.getElementById('terminal-end')?.scrollIntoView({ behavior: 'smooth' });
   }, [output]);
-
-  useEffect(() => {
-    if (output.length > 0) {
-      document.getElementById('terminal-end')?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [output]);
+  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -222,7 +215,22 @@ const KaliTerminal = () => {
   };
 
   const executeCommand = (command: string): string | null => {
-    switch (command) {
+    const args = command.trim().split(/\s+/);
+    const cmd = args[0];
+
+    switch (cmd) {
+      case 'pwd':
+      return pwd;
+
+      case 'ls':
+        return Object.keys(getCurrentDirectory()?.contents || {}).join('  ');
+
+      case 'cat': {
+        if (args.length < 2) return "Usage: cat <filename>";
+        const file = getCurrentDirectory()?.contents[args[1]];
+        return file?.type === 'file' ? file.content : "cat: No such file.";
+      }
+        
       case 'whoami':
         return resumeData.name;
       case 'resume':

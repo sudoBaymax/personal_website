@@ -4,8 +4,9 @@ const ResumePage = () => {
   return (
     <div className="resume-page">
       <h1>My Resume</h1>
-        <iframe 
-          src="/assets/your_resume.pdf" 
+      <iframe 
+        src="/public/resume.pdf" 
+
 
         width="100%" 
         height="800px" 
