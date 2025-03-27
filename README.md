@@ -11,7 +11,6 @@ This is my personal website built using the MERN stack (MongoDB, Express.js, Rea
 - TypeScript for type safety
 - Tailwind CSS for styling (if used)
 - RESTful API architecture
-- Authentication (if implemented)
 
 ## Tech Stack
 
