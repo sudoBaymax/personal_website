@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AppStack from "../components/AppStack"; // Import the new component
 
+
+interface Resume {
+  type: string; // Adjust type if needed (e.g., "pdf" instead of string)
+  content: string; // Assuming the content is a base64 string or URL
+}
+
 function LandingPage() {
+  const [resume, setResume] = useState<Resume | null>(null);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/resume")
+      .then((res) => res.json())
+      .then((json: Resume) => setResume(json))
+      .catch((error) => console.error("Error fetching resume:", error));
+  }, []);
+
   return (
     <div className="landing-wrapper flex flex-col items-center justify-center">
 
@@ -29,3 +44,4 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
