@@ -28,7 +28,8 @@ function NavBar() {
             <div className="menu">
                 <a href="#about" onClick={(e) => handleScrollTo(e, 'about')}>About</a>
                 <a href="#contact" onClick={(e) => handleScrollTo(e, 'contact')}>Contact</a>
-                <a className="resume-button" href="https://jatou.ca/resume/">Resume</a>
+                <a className="resume-button" href="http://localhost:5000/resume" target="_blank" rel="noopener noreferrer">Resume</a>
+
             </div>
         </nav>
     );

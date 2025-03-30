@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import AppStack from "../components/AppStack"; // Import the new component
 
-
-interface Resume {
-  type: string; // Adjust type if needed (e.g., "pdf" instead of string)
-  content: string; // Assuming the content is a base64 string or URL
-}
-
 function LandingPage() {
-  const [resume, setResume] = useState<Resume | null>(null);
-
   useEffect(() => {
-    fetch("http://localhost:5000/resume")
-      .then((res) => res.json())
-      .then((json: Resume) => setResume(json))
-      .catch((error) => console.error("Error fetching resume:", error));
+    // Fetch logic can be added back if needed in the future
   }, []);
 
   return (
@@ -32,16 +21,16 @@ function LandingPage() {
       <div className="CTA">
           {/* Call to Action */}
           <button className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700">
-            &lt; Go to Shell &#47;&gt;
+            Go to Shell
           </button>
 
-          <a href="https://jatou.ca/resume/"></a><span className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700">
+          <button className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700" onClick={() => window.open("http://localhost:5000/resume", "_blank")}>
             Download Resume
-          </span>
+          </button>
+
       </div>
     </div>
   );
 }
 
 export default LandingPage;
-
