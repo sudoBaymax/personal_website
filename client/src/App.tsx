@@ -10,8 +10,9 @@ function App() {
     <div className="wrapper">
       <NavBar /> 
       <div className="content-container">
-        <LandingPage />
         <TerminalSection /> {/* Add the terminal section to the main layout */}
+        <LandingPage />
+
       </div>
       <Footer /> {/* Add the footer to the main layout */}
     </div>

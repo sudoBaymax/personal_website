@@ -60,7 +60,6 @@ function TerminalPage() {
 
                 You also get a giftcard if you give me a SWE internship :)
 
-                </h2> 
                 </h2>
 
 
