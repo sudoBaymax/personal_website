@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root[data-theme="light"] {
+  --nav-bg: rgba(120, 120, 120, 0.2);
+  --nav-border: rgba(255, 255, 255, 0.3);
+  --nav-text: black;
+  --nav-hover: #333;
+  --resume-bg: #111111;
+  --resume-hover: #292929;
+  --resume-text: white;
+}
+
+:root[data-theme="dark"] {
+  --nav-bg: rgba(40, 40, 40, 0.2);
+  --nav-border: rgba(0, 0, 0, 0.3);
+  --nav-text: white;
+  --nav-hover: #cccccc;
+  --resume-bg: #ffffff;
+  --resume-hover: #e0e0e0;
+  --resume-text: #111111;
+}
+
 /* Navbar Wrapper */
 .wrapper {
     position: relative; /* Change to relative to allow scrolling */
@@ -12,7 +32,7 @@
     backdrop-filter: blur(10px); /* Glassmorphism effect */
     z-index: 1000; /* Ensure it stays on top */
     font-family: "Albert Sans", sans-serif;
-    background-color: #ffffff;
+    background-color: var(--bg-color);
 }
 
 .navbar {
@@ -22,16 +42,14 @@
     width: 55%; /* Change width to 100% */
     position: fixed;
     max-width: 1200px;
-    background: rgba(120, 120, 120, 0.2); /* Transparent with slight opacity */
+    background: var(--nav-bg);
     backdrop-filter: blur(10px); /* Frosted glass effect */
     -webkit-backdrop-filter: blur(10px); /* For Safari */
     border-radius: 50px;
     padding: 0px 10px;
     margin: 10px 21%;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border for depth */
+    border: 1px solid var(--nav-border);
 }
-
-
 
 /* Logo Styling */
 .navbar .logo img {
@@ -51,19 +69,19 @@
 /* Links */
 .navbar .menu a {
     text-decoration: none;
-    color: black;
+    color: var(--nav-text);
     transition: color 0.3s ease-in-out;
 }
 
 .navbar .menu a:hover {
-    color: #333;
+    color: var(--nav-hover);
 }
 
 /* Resume Button - Hidden on Small Screens */
 .navbar .menu .resume-button {
     display: inline-block;
-    background: #111111;
-    color: white;
+    background: var(--resume-bg);
+    color: var(--resume-text);
     padding: 7px 14px;
     border-radius: 34px;
     font-size: 21px;
@@ -71,8 +89,26 @@
 }
 
 .navbar .menu .resume-button:hover {
-    background: #292929;
-    color: white;
+    background: var(--resume-hover);
+    color: var(--resume-text);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
 }
 
 /* Responsive Design */

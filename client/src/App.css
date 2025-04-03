@@ -1,3 +1,23 @@
+:root[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --card-bg: #f5f5f5;
+  --card-bg-middle: #d7d7d7;
+  --button-bg: #111111;
+  --button-hover: #292929;
+  --button-text: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --card-bg: #2d2d2d;
+  --card-bg-middle: #3d3d3d;
+  --button-bg: #ffffff;
+  --button-hover: #e0e0e0;
+  --button-text: #111111;
+}
+
 /* Center content & background */
 .landing-wrapper {
   min-height: 100vh;
@@ -6,11 +26,11 @@
   justify-content: flex-start; /* Moves content higher */
   align-items: center;
   padding-top: 10vh; /* Adjust padding to control height */
-  color: #111111;
+  color: var(--text-color);
   width: 90%;
   margin: 75px auto;
   overflow-y: auto; /* Enable scrolling when content exceeds height */
-
+  background-color: var(--bg-color);
 }
 
 .landing-wrapper p {
@@ -18,11 +38,13 @@
   text-align: center;
   padding-bottom: 1rem; 
   width: 550px;
+  color: var(--text-color);
 }
 
 .landing-wrapper h1 {
   text-align: center;
   max-width: 70%;
+  color: var(--text-color);
 }
 
 
@@ -60,7 +82,7 @@
   z-index: 2;
   transform: scale(1) translateY(0);
   opacity: 1;
-  background-color: #d7d7d7;
+  background-color: var(--card-bg-middle);
   width: 160px;
   height: 160px;
 }
@@ -69,7 +91,7 @@
   z-index: 1;
   transform: scale(0.85) translateY(30px);
   opacity: 1;
-  background-color: #f5f5f5;
+  background-color: var(--card-bg);
   width: 140px;
   height: 180px;
 }
@@ -84,8 +106,8 @@
 
 .landing-wrapper button {
   display: inline-block;
-  background: #111111;
-  color: white;
+  background: var(--button-bg);
+  color: var(--button-text);
   padding: 12px 17px;
   border-radius: 34px;
   font-size: 21px;
@@ -93,8 +115,8 @@
 }
 
 .landing-wrapper button:hover {
-  background: #292929;
-  color: white;
+  background: var(--button-hover);
+  color: var(--button-text);
 }
 
 .CTA {
@@ -108,5 +130,5 @@
   font-size: 21px;
   margin-left: 50px;
   cursor: pointer;
-  color: #111111;
+  color: var(--text-color);
 }

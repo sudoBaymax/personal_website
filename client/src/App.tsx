@@ -3,19 +3,21 @@ import TerminalSection from './components/TerminalSection'; // Import the new te
 import NavBar from './components/NavBar';
 import LandingPage from './pages/LandingPage';
 import Footer from './components/Footer'; // Import the footer component
+import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
 function App() {
   return (
-    <div className="wrapper">
-      <NavBar /> 
-      <div className="content-container">
-        <TerminalSection /> {/* Add the terminal section to the main layout */}
-        <LandingPage />
-
+    <ThemeProvider>
+      <div className="wrapper">
+        <NavBar /> 
+        <div className="content-container">
+          <TerminalSection /> {/* Add the terminal section to the main layout */}
+          <LandingPage />
+        </div>
+        <Footer /> {/* Add the footer to the main layout */}
       </div>
-      <Footer /> {/* Add the footer to the main layout */}
-    </div>
+    </ThemeProvider>
   );
 }
 
