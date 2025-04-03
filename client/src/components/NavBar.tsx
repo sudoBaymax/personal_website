@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Nav.css';
-import Logo from "../assets/logo/logo.png";
+import LogoDark from "../assets/logo/logo.png";
+import LogoLight from "../assets/logo/logo-light.png";
 import { useTheme } from '../context/ThemeContext';
 
 function NavBar() {
@@ -24,12 +25,12 @@ function NavBar() {
     return (
         <nav className={`navbar ${scrolling ? 'scrolled' : ''}`}>
             <div className="logo">
-                <img src={Logo} alt="Logo" />
+                <img src={theme === 'dark' ? LogoLight : LogoDark} alt="Logo" />
             </div>
             <div className="menu">
                 <a href="#about" onClick={(e) => handleScrollTo(e, 'about')}>About</a>
                 <a href="#contact" onClick={(e) => handleScrollTo(e, 'contact')}>Contact</a>
-                <a className="resume-button" href="http://localhost:5000/resume" target="_blank" rel="noopener noreferrer">Resume</a>
+                <a className="resume-button" id="resume-button" href="http://localhost:5000/resume" target="_blank" rel="noopener noreferrer">Resume</a>
                 <button className="theme-toggle" onClick={toggleTheme}>
                     {theme === 'light' ? '🌙' : '☀️'}
                 </button>

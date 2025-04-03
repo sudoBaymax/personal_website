@@ -1,8 +1,8 @@
 import React from 'react';
-import TerminalSection from './components/TerminalSection'; // Import the new terminal section
+import TerminalSection from './components/TerminalSection';
 import NavBar from './components/NavBar';
 import LandingPage from './pages/LandingPage';
-import Footer from './components/Footer'; // Import the footer component
+import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
@@ -10,12 +10,14 @@ function App() {
   return (
     <ThemeProvider>
       <div className="wrapper">
-        <NavBar /> 
-        <div className="content-container">
-          <TerminalSection /> {/* Add the terminal section to the main layout */}
-          <LandingPage />
+        <div className="wrapper-nav">
+          <NavBar />
         </div>
-        <Footer /> {/* Add the footer to the main layout */}
+        <div className="content-container">
+          <LandingPage />
+          {/* <TerminalSection /> */}
+        </div>
+        <Footer />
       </div>
     </ThemeProvider>
   );

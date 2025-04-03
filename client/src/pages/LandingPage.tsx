@@ -13,9 +13,9 @@ function LandingPage() {
       <AppStack />
       
       {/* Hero Section */}
-      <h1 className="text-4xl font-bold mb-6">Elevate every interaction, inspire every moment.</h1>
+      <h1 className="text-4xl font-bold mb-6">Elevate every interaction, <br />inspire every moment.</h1>
       <p className="text-lg text-gray-600 mb-10">
-      My name is Joseph Jatou— cofounder of Glance, Software Engineering Intern at BAREL Inc.
+      My name is Joseph Jatou— cofounder of Glance, <br></br>HPC Software Engineer at Voltage Park
       </p>
 
       <div className="CTA">

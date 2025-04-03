@@ -5,6 +5,8 @@ const KaliTerminal = () => {
   const [input, setInput] = useState<string>('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
+  const [shouldScroll, setShouldScroll] = useState<boolean>(false);
+  
   function getPromptString(currentPath: string, input: string = ''): string {
     return `┌──(root💀kali)-[${currentPath}]\n└─# ${input}`;
   }
@@ -37,16 +39,15 @@ const KaliTerminal = () => {
     }
   });
 
-  useEffect(() => {
-    if (terminalRef.current) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-    }
-    inputRef.current?.focus();
-    document.getElementById('terminal-end')?.scrollIntoView({ behavior: 'smooth' });
-  }, [output]);
-  
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (shouldScroll && terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+      setShouldScroll(false);
+    }
+  }, [output, shouldScroll]);
 
   const resumeData = {
     name: 'Joseph Jatou',
@@ -105,15 +106,6 @@ const KaliTerminal = () => {
       }
     ]
   }
-
-  useEffect(() => {
-    if (terminalRef.current) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-    }
-    inputRef.current?.focus();
-    document.getElementById('terminal-end')?.scrollIntoView({ behavior: 'smooth' });
-  }, [output]);
-  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -212,6 +204,7 @@ const KaliTerminal = () => {
     newOutput.push({ type: 'system', content: getPromptString(pwd) });
     setOutput(newOutput);
     setInput('');
+    setShouldScroll(true);
   };
 
   const executeCommand = (command: string): string | null => {
