@@ -1,20 +1,25 @@
 import React from 'react';
-import TerminalSection from './components/TerminalSection'; // Import the new terminal section
+import TerminalSection from './components/TerminalSection';
 import NavBar from './components/NavBar';
 import LandingPage from './pages/LandingPage';
-import Footer from './components/Footer'; // Import the footer component
+import Footer from './components/Footer';
+import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
 function App() {
   return (
-    <div className="wrapper">
-      <NavBar /> 
-      <div className="content-container">
-        <LandingPage />
-        <TerminalSection /> {/* Add the terminal section to the main layout */}
+    <ThemeProvider>
+      <div className="wrapper">
+        <div className="wrapper-nav">
+          <NavBar />
+        </div>
+        <div className="content-container">
+          <LandingPage />
+          {/* <TerminalSection /> */}
+        </div>
+        <Footer />
       </div>
-      <Footer /> {/* Add the footer to the main layout */}
-    </div>
+    </ThemeProvider>
   );
 }
 

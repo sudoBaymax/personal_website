@@ -1,49 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Navbar Wrapper */
-.wrapper {
-    position: relative; /* Change to relative to allow scrolling */
+:root[data-theme="light"] {
+  --nav-bg: rgba(255, 255, 255, 0.1);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.5);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --nav-text: black;
+  --nav-hover: #333;
+  --resume-bg: #111111;
+  --resume-hover: #292929;
+  --resume-text: white;
+}
 
+:root[data-theme="dark"] {
+  --nav-bg: rgba(26, 26, 26, 0.1);
+  --nav-bg-scrolled: rgba(26, 26, 26, 0.5);
+  --nav-border: rgba(0, 0, 0, 0.1);
+  --nav-text: white;
+  --nav-hover: #cccccc;
+  --resume-bg: #ffffff;
+  --resume-hover: #e0e0e0;
+  --resume-text: #111111;
+}
+
+/* Navbar Wrapper */
+.wrapper-nav {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
-    padding: 12px 0; /* Adjusted padding for better spacing */
-    backdrop-filter: blur(10px); /* Glassmorphism effect */
-    z-index: 1000; /* Ensure it stays on top */
+    padding: 12px 0;
+    z-index: 1000;
     font-family: "Albert Sans", sans-serif;
-    background-color: #ffffff;
+    background-color: transparent;
+    
 }
 
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 55%; /* Change width to 100% */
+    width: 55%;
     position: fixed;
     max-width: 1200px;
-    background: rgba(120, 120, 120, 0.2); /* Transparent with slight opacity */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    background: var(--nav-bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-radius: 50px;
     padding: 0px 10px;
     margin: 10px 21%;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border for depth */
+    border: 1px solid var(--nav-border);
+    transition: all 0.3s ease;
+    max-width: 45%;
+    margin: 0 auto;
+    left: 27.5%;
+    
 }
 
-
+.navbar.scrolled {
+    background: var(--nav-bg-scrolled);
+    backdrop-filter: blur(15px) contrast(130%) brightness(130%);
+    -webkit-backdrop-filter: blur(15px) contrast(130%) brightness(130%);
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
 
 /* Logo Styling */
 .navbar .logo img {
-    width: 155px; /* Reduced logo size */
+    width: 155px;
     height: auto;
+    transition: transform 0.3s ease;
+}
+
+.navbar.scrolled .logo img {
+    transform: scale(0.95);
 }
 
 /* Menu Styling */
 .navbar .menu {
     display: flex;
-    gap: 30px; /* Increased spacing */
-    font-size: 21px; /* Increased font size */
+    gap: 30px;
+    font-size: 21px;
     font-weight: 600;
     align-items: center;
 }
@@ -51,28 +89,85 @@
 /* Links */
 .navbar .menu a {
     text-decoration: none;
-    color: black;
-    transition: color 0.3s ease-in-out;
+    color: var(--nav-text);
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+.navbar .menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--nav-text);
+    transition: width 0.3s ease;
+}
+
+.navbar #resume-button::after {
+    background-color: #ff050500
+}
+
+.navbar .menu a:hover::after {
+    width: 100%;
 }
 
 .navbar .menu a:hover {
-    color: #333;
+    color: var(--nav-hover);
 }
 
-/* Resume Button - Hidden on Small Screens */
+/* Resume Button */
 .navbar .menu .resume-button {
     display: inline-block;
-    background: #111111;
-    color: white;
+    background: var(--resume-bg);
+    color: var(--resume-text);
     padding: 7px 14px;
     border-radius: 34px;
     font-size: 21px;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .navbar .menu .resume-button:hover {
-    background: #292929;
-    color: white;
+    background: var(--resume-hover);
+    color: var(--resume-text);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    margin-right: 25px; 
+}
+
+.theme-toggle:focus {
+    outline: none;
+}
+
+.theme-toggle:focus-visible {
+    outline: none;
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    color: var(--nav-text);
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    color: var(--nav-hover);
 }
 
 /* Responsive Design */
@@ -81,6 +176,8 @@
         flex-direction: column;
         text-align: center;
         padding: 15px;
+        width: 90%;
+        margin: 10px 5%;
     }
 
     .navbar .menu {

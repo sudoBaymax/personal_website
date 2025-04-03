@@ -1,16 +1,55 @@
+:root[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --card-bg: #f5f5f5;
+  --card-bg-middle: #d7d7d7;
+  --button-bg: #111111;
+  --button-hover: #8a6d00;
+  --button-text: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --card-bg: #2d2d2d;
+  --card-bg-middle: #3d3d3d;
+  --button-bg: #000000;
+  --button-hover: #0b0b0b;
+  --button-text: #ffffff;
+}
+
+/* Wrapper styles */
+.wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  overflow-x: hidden;
+}
+
+/* Content container */
+.content-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px; /* Add space for fixed navbar */
+}
+
 /* Center content & background */
 .landing-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Moves content higher */
+  justify-content: flex-start;
   align-items: center;
-  padding-top: 10vh; /* Adjust padding to control height */
-  color: #111111;
+  padding-top: 10vh;
+  color: var(--text-color);
   width: 90%;
-  margin: 75px auto;
-  overflow-y: auto; /* Enable scrolling when content exceeds height */
-
+  margin: 0 auto;
+  overflow-y: auto;
+  background-color: var(--bg-color);
 }
 
 .landing-wrapper p {
@@ -18,11 +57,13 @@
   text-align: center;
   padding-bottom: 1rem; 
   width: 550px;
+  color: var(--text-color);
 }
 
 .landing-wrapper h1 {
   text-align: center;
   max-width: 70%;
+  color: var(--text-color);
 }
 
 
@@ -60,7 +101,7 @@
   z-index: 2;
   transform: scale(1) translateY(0);
   opacity: 1;
-  background-color: #d7d7d7;
+  background-color: var(--card-bg-middle);
   width: 160px;
   height: 160px;
 }
@@ -69,7 +110,7 @@
   z-index: 1;
   transform: scale(0.85) translateY(30px);
   opacity: 1;
-  background-color: #f5f5f5;
+  background-color: var(--card-bg);
   width: 140px;
   height: 180px;
 }
@@ -81,20 +122,27 @@
   border-radius: 20px;
 }
 
+.CTA button {
+  margin: 0 10px;
+}
+
+.logo {
+  padding: 25px;
+}
 
 .landing-wrapper button {
   display: inline-block;
-  background: #111111;
-  color: white;
+  background: var(--button-bg);
+  color: var(--button-text);
   padding: 12px 17px;
   border-radius: 34px;
   font-size: 21px;
-  transition: background 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 .landing-wrapper button:hover {
-  background: #292929;
-  color: white;
+  background: var(--button-hover);
+  color: var(--button-text);
 }
 
 .CTA {
@@ -108,5 +156,5 @@
   font-size: 21px;
   margin-left: 50px;
   cursor: pointer;
-  color: #111111;
+  color: var(--text-color);
 }
