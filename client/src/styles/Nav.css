@@ -4,8 +4,8 @@
   --nav-bg: rgba(255, 255, 255, 0.1);
   --nav-bg-scrolled: rgba(255, 255, 255, 0.5);
   --nav-border: rgba(255, 255, 255, 0.1);
-  --nav-text: black;
-  --nav-hover: #333;
+  --nav-text: #111111;
+  --nav-hover: #333333;
   --resume-bg: #111111;
   --resume-hover: #292929;
   --resume-text: white;
@@ -14,8 +14,8 @@
 :root[data-theme="dark"] {
   --nav-bg: rgba(26, 26, 26, 0.1);
   --nav-bg-scrolled: rgba(26, 26, 26, 0.5);
-  --nav-border: rgba(0, 0, 0, 0.1);
-  --nav-text: white;
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --nav-text: #ffffff;
   --nav-hover: #cccccc;
   --resume-bg: #ffffff;
   --resume-hover: #e0e0e0;
@@ -170,22 +170,82 @@
     color: var(--nav-hover);
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--nav-text);
+    cursor: pointer;
+    padding: 8px;
+    margin-left: auto;
+    transition: color 0.3s ease;
+}
+
+.hamburger:hover {
+    color: var(--nav-hover);
+}
+
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1500px) {
     .navbar {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px;
         width: 90%;
-        margin: 10px 5%;
+        max-width: 1200px;
+    }
+    
+    .navbar .logo {
+        position: relative;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .navbar .logo img {
+        padding: 0;
+        margin: 0;
+        width: 150px;
+    }
+
+    .hamburger {
+        display: block;
     }
 
     .navbar .menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: #ffffff;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 40px;
+        border-radius: 15px;
         flex-direction: column;
         gap: 15px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .menu.open {
+        display: grid;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        width: 95%;
+        padding: 8px;
     }
 
     .navbar .logo img {
-        width: 120px;
+        width: 140px;
+    }
+
+    .navbar .menu {
+        padding: 30px;
+        right: 10px;
     }
 }
