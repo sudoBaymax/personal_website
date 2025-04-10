@@ -1,5 +1,5 @@
 import React from 'react';
-import TerminalSection from './components/TerminalSection';
+import TerminalPage from './pages/TerminalPage';
 import NavBar from './components/NavBar';
 import LandingPage from './pages/LandingPage';
 import Footer from './components/Footer';
@@ -15,7 +15,7 @@ function App() {
         </div>
         <div className="content-container">
           <LandingPage />
-          {/* <TerminalSection /> */}
+          <TerminalPage />
         </div>
         <Footer />
       </div>
