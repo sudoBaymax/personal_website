@@ -1,232 +1,25 @@
-/* Kali Linux Terminal Styling */
-
+/* Container styling for react-terminal */
 .terminal-container {
-  width: 100%;
-  max-width: 900px;
+  width: 1000px;
+  height: 600px;
+  max-width: 100%;
   margin: 20px auto;
-  font-family: 'Fira Mono', 'Courier New', monospace;
-  background-color: #0C0C0C;
-  color: #F8F8F8;
   border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
   border: 1px solid #444;
-  overflow: hidden;
 }
 
-.terminal-header {
-  background-color: #1A1A1A;
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #444;
-}
-
-.window-controls {
-  display: flex;
-  gap: 8px;
-}
-
-.control-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.control-close {
-  background-color: #FF5F56;
-}
-
-.control-minimize {
-  background-color: #FFBD2E;
-}
-
-.control-expand {
-  background-color: #27C93F;
-}
-
-.terminal-title {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 14px;
-  color: #AAA;
-}
-
-.terminal-body {
-  height: 500px;
-  overflow-y: auto;
-  padding: 15px;
-  background-color: #0C0C0C;
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.terminal-body::-webkit-scrollbar {
-  width: 8px;
-}
-
-.terminal-body::-webkit-scrollbar-track {
-  background: #0C0C0C;
-}
-
-.terminal-body::-webkit-scrollbar-thumb {
-  background-color: #333;
-  border-radius: 4px;
-}
-
-.terminal-line {
+/* Ensure proper line breaks in output */
+.react-terminal-wrapper {
   white-space: pre-wrap;
-  word-break: break-all;
-  margin-bottom: 2px;
-}
-
-.prompt {
-  color: #50FA7B;
-  font-weight: bold;
-}
-
-.command-text {
-  color: #F8F8F8;
-}
-
-.output-text {
-  color: #F8F8F8;
-}
-
-.error-text {
-  color: #FF5555;
-}
-
-/* Improved input line styling */
-.terminal-input-line {
-  display: flex;
-  align-items: center;
-}
-
-.terminal-input {
-  background-color: transparent;
-  border: none;
-  color: #F8F8F8;
-  font-family: 'Fira Mono', 'Courier New', monospace;
-  font-size: 15px;
-  flex: 1;
-  outline: none;
-  padding: 0;
-  margin: 0;
-  caret-color: #F8F8F8;
-}
-
-.directory-text {
-  color: #BD93F9;
-}
-
-.file-text {
-  color: #F8F8F8;
-}
-
-.highlight-text {
-  color: #FFB86C;
-}
-
-.success-text {
-  color: #50FA7B;
-}
-
-/* Animation for blinking cursor */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.cursor {
-  display: inline-block;
-  width: 8px;
-  height: 16px;
-  background-color: #F8F8F8;
-  animation: blink 1s step-end infinite;
-  margin-left: 2px;
-  vertical-align: middle;
-}
-
-/* Specific Kali Linux styling for prompt components */
-.username-text {
-  color: #BD93F9;
-  font-weight: bold;
-}
-
-.hostname-text {
-  color: #FF79C6;
-  font-weight: bold;
-}
-
-.skull-icon {
-  color: #FF5555;
-}
-
-.path-text {
-  color: #8BE9FD;
-  font-weight: bold;
-}
-
-/* Hide duplicate prompts */
-.hidden-prompt {
-  display: none;
-}
-
-/* Styling for different command outputs */
-.nmap-output .port-open {
-  color: #50FA7B;
-}
-
-.nmap-output .port-filtered {
-  color: #FFB86C;
-}
-
-.nmap-output .port-closed {
-  color: #FF5555;
-}
-
-.file-listing .executable {
-  color: #50FA7B;
-}
-
-.file-listing .directory {
-  color: #BD93F9;
-}
-
-.file-listing .symlink {
-  color: #8BE9FD;
+  word-break: break-word;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .terminal-container {
     width: 95%;
-  }
-  
-  .terminal-body {
-    height: 400px;
-    font-size: 12px;
+    margin: 20px auto;
   }
 }
-
-/* TailwindCSS compatibility classes */
-.w-3 { width: 0.75rem; }
-.h-3 { height: 0.75rem; }
-.rounded-full { border-radius: 9999px; }
-.bg-red-500 { background-color: #FF5F56; }
-.bg-yellow-500 { background-color: #FFBD2E; }
-.bg-green-500 { background-color: #27C93F; }
-.mx-auto { margin-left: auto; margin-right: auto; }
-.text-xs { font-size: 0.75rem; }
-.text-gray-300 { color: #AAA; }
-.h-96 { height: 24rem; }
-.overflow-y-auto { overflow-y: auto; }
-.p-2 { padding: 0.5rem; }
-.font-mono { font-family: 'Fira Mono', 'Courier New', monospace; }
-.text-sm { font-size: 0.875rem; }
-.whitespace-pre-wrap { white-space: pre-wrap; }
-.text-green-500 { color: #50FA7B; }
-.text-red-500 { color: #FF5555; }
-.text-white { color: #F8F8F8; }
-.flex { display: flex; }
-.hidden { display: none; }

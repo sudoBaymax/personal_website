@@ -1,326 +1,88 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './TerminalSection.css';
+// These imports are used by the ReactTerminal component in other files
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ReactTerminal } from "react-terminal";
 
-const KaliTerminal = () => {
-  const [input, setInput] = useState<string>('');
-  const [commandHistory, setCommandHistory] = useState<string[]>([]);
-  const [historyIndex, setHistoryIndex] = useState<number>(-1);
-  const [shouldScroll, setShouldScroll] = useState<boolean>(false);
+// commands object is exported and used by the terminal component
+export const commands = {
+  whoami: "Joseph Jatou - Software Developer | Ethical Hacker | Builder",
   
-  function getPromptString(currentPath: string, input: string = ''): string {
-    return `┌──(root💀kali)-[${currentPath}]\n└─# ${input}`;
-  }
-  
-  const [output, setOutput] = useState<{ type: string; content: string }[]>([
-    { type: 'system', content: getPromptString('/root') }
-  ]);
-  
-  const [pwd, setPwd] = useState<string>('/root');
-  const [filesystem] = useState<{ [key: string]: { type: string; contents: any } }>({
-    '/root': {
-      type: 'dir',
-      contents: {
-        'Documents': { type: 'dir', contents: {} },
-        'Downloads': { type: 'dir', contents: {} },
-        'tools': { 
-          type: 'dir', 
-          contents: {
-            'nmap_results.txt': { 
-              type: 'file', 
-              content: 'PORT     STATE SERVICE\n22/tcp   open  ssh\n80/tcp   open  http\n443/tcp  open  https\n8080/tcp open  http-proxy' 
-            }
-          }
-        },
-        'welcome.txt': { 
-          type: 'file', 
-          content: 'Welcome to my Kali Linux portfolio terminal!\n\nTry some commands:\n- ls -la\n- cat welcome.txt\n- cd tools\n- nmap -sV 192.168.1.1\n- help' 
-        }
-      }
-    }
-  });
+  resume: `Name: Joseph Jatou
+Location: Kitchener Waterloo Area
+Email: jatoujoseph@gmail.com
+LinkedIn: linkedin.com/in/josephjatou
+GitHub: github.com/sudoBaymax
+Website: jatou.ca
+`,
 
-  const terminalRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  education: "Wilfrid Laurier University, BSc Computer Science, Minor in Business (Expected 2028)",
 
-  useEffect(() => {
-    if (shouldScroll && terminalRef.current) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-      setShouldScroll(false);
-    }
-  }, [output, shouldScroll]);
+  skills: `- C++ (2yrs)
+- Java (3yrs)
+- SQL (1yr)
+- Rust (1yr)
 
-  const resumeData = {
-    name: 'Joseph Jatou',
-    location: 'Kitchener Waterloo Area',
-    email: 'jatoujoseph@gmail.com',
-    linkedin: 'linkedin.com/in/josephjatou',
-    github: 'github.com/sudoBaymax',
-    website: 'jatou.ca',
-    education: 'Wilfrid Laurier University, BSc Computer Science, Minor in Business (Expected 2028)',
-    skills: {
-      languages: ['JavaScript (5yrs)', 'Python (6yrs)', 'C++ (2yrs)', 'Java (3yrs)', 'SQL (1yr)', 'Rust (1yr)'],
-      software: ['AWS', 'GCP', 'Langchain', 'Docker', 'Kubernetes', 'TensorFlow', 'Jupyter Notebook', 'Selenium', 'Bootstrap', 'Git', 'Bash']
-    },
-    experience: [
-      {
-        title: 'Co-Founder & Software Engineer',
-        company: 'GLANCE',
-        duration: 'Nov 2024 - Present',
-        location: 'Toronto, ON',
-        description: [
-          'Developed a full-stack FARM application (FastAPI, React, MongoDB) for AI-driven eyewear recommendations.',
-          'Built proprietary ML models detecting 17+ beauty features.',
-          'Engineered an API for seamless integration with optical stores.',
-          'Developed an enterprise dashboard for eCommerce and inventory management.',
-          'Conducted market validation with 75+ end users and 14+ optical stores.'
-        ]
-      },
-      {
-        title: 'AI Research Intern',
-        company: 'Wilfrid Laurier University',
-        duration: 'Sep 2024 - Jan 2025',
-        location: 'Waterloo, ON',
-        description: [
-          'Authored a research paper on medical image segmentation models.',
-          'Developed ML pipelines using Apache Airflow, ETL, and Docker.',
-          'Fine-tuned tumor detection models with 92% accuracy.',
-          'Reviewed 20+ research papers, improving literature review efficiency.'
-        ]
-      }
-    ],
-    projects: [
-      {
-        name: 'Eyewear Recommendation System',
-        description: 'AI-powered eyewear recommendation tool using ML and AR.',
-        github: 'github.com/sudoBaymax'
-      },
-      {
-        name: 'Anti-Phishing Chrome Extension',
-        description: 'AI-driven phishing detection tool.',
-        github: 'github.com/sudoBaymax/spearphish'
-      },
-      {
-        name: 'Find That Pokémon',
-        description: 'TensorFlow-based Pokémon image classification.',
-        github: 'github.com/sudoBaymax/pokemon-finder'
-      }
-    ]
-  }
+Software & Tools:
+- AWS, GCP, Langchain, Docker, Kubernetes
+- TensorFlow, Jupyter Notebook, Selenium
+- Git, Bash, Bootstrap
+`,
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  };
+  experience: `GLANCE - Co-Founder & Software Engineer (Nov 2024 - Present)
+- Built a FARM stack app for AI-driven eyewear recommendations.
+- Created ML models for beauty feature detection (17+ features).
+- Built dashboards, APIs, and handled market validation (14+ stores).
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      processCommand();
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      navigateHistory(1);
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      navigateHistory(-1);
-    } else if (e.key === 'Tab') {
-      e.preventDefault();
-      autocompleteCommand();
-    }
-  };
+Wilfrid Laurier University - AI Research Intern (Sep 2024 - Jan 2025)
+- Worked on medical image segmentation.
+- Built ML pipelines using Docker, Airflow, ETL.
+- Published paper on tumor detection models with 92% accuracy.
+`,
 
-  const navigateHistory = (direction: number) => {
-    if (commandHistory.length === 0) return;
-    
-    const newIndex: number = historyIndex + direction;
+  projects: `Eyewear Recommendation System
+- ML & AR-powered AI tool to find ideal glasses.
+- GitHub: github.com/sudoBaymax
 
-    if (newIndex >= -1 && newIndex < commandHistory.length) {
-      setHistoryIndex(newIndex);
-      if (newIndex === -1) {
-        setInput('');
-      } else {
-        setInput(commandHistory[newIndex]);
-      }
-    }
-  };
+SpearPhish - Anti-Phishing Chrome Extension
+- Detects phishing using AI + browser integration.
+- GitHub: github.com/sudoBaymax/spearphish
 
-  const autocompleteCommand = () => {
-    if (!input) return;
-    
-    const args = input.split(' ');
-    const command = args[0];
-    
-    if (args.length === 1) {
-      const commands = [
-        'ls', 'cd', 'cat', 'pwd', 'echo', 'clear', 'whoami', 'help', 
-        'ifconfig', 'nmap', 'msfconsole', 'python', 'rm', 'mkdir',
-        'find', 'grep', 'touch'
-      ];
-      
-      const matches = commands.filter(cmd => cmd.startsWith(command));
-      if (matches.length === 1) {
-        setInput(matches[0]);
-      }
-    } else if (args.length === 2 && (command === 'cd' || command === 'cat')) {
-      const path = args[1];
-      const currentDir = getCurrentDirectory();
+Find That Pokémon!
+- TensorFlow-powered Pokémon image classifier.
+- GitHub: github.com/sudoBaymax/pokemon-finder
+`,
 
-      if (currentDir && currentDir.type === 'dir') {
-        const entries = Object.keys(currentDir.contents);
-        const matches = entries.filter(entry => entry.startsWith(path));
-        
-        if (matches.length === 1) {
-          setInput(`${command} ${matches[0]}`);
-        }
-      }
-    }
-  };
+  hackathon: `🥷 HackKW 2025 (coming soon)
+- In-person hackathon for 100-150 builders.
+- Connects hackers, VCs, founders, and reporters.
+- A space for misfits who build cool sh*t.
+`,
 
-  const getCurrentDirectory = () => {
-    const pathParts = pwd.split('/').filter(p => p);
-    let current = filesystem['/root'];
-    
-    if (pwd === '/root') return current;
-    
-    for (let i = 1; i < pathParts.length; i++) {
-      if (current.contents && current.contents[pathParts[i]]) {
-        current = current.contents[pathParts[i]];
-      } else {
-        return null;
-      }
-    }
-    
-    return current;
-  };
+  easteregg: "👀 You found an Easter Egg!\nRun `cat welcome.txt` in the other terminal 😉",
 
-  const processCommand = (): void => {
-    if (!input.trim()) {
-      setInput('');
-      return;
-    }
-    setCommandHistory(prev => [input, ...prev]);
-    setHistoryIndex(-1);
-    const newOutput = [...output, { type: 'command', content: input }];
-    const command = input.trim().toLowerCase();
-    const result = executeCommand(command);
-    if (result) newOutput.push({ type: 'output', content: result });
-    newOutput.push({ type: 'system', content: getPromptString(pwd) });
-    setOutput(newOutput);
-    setInput('');
-    setShouldScroll(true);
-  };
+  banner: `██████╗ ██╗      █████╗ ███╗   ██╗ ██████╗███████╗
+██╔══██╗██║     ██╔══██╗████╗  ██║██╔════╝██╔════╝
+██████╔╝██║     ███████║██╔██╗ ██║██║     █████╗  
+██╔═══╝ ██║     ██╔══██║██║╚██╗██║██║     ██╔══╝  
+██║     ███████╗██║  ██║██║ ╚████║╚██████╗███████╗
+╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝
+Type 'help' to get started.
+`,
 
-  const executeCommand = (command: string): string | null => {
-    const args = command.trim().split(/\s+/);
-    const cmd = args[0];
+  clear: () => "",
 
-    switch (cmd) {
-      case 'pwd':
-      return pwd;
-
-      case 'ls':
-        return Object.keys(getCurrentDirectory()?.contents || {}).join('  ');
-
-      case 'cat': {
-        if (args.length < 2) return "Usage: cat <filename>";
-        const file = getCurrentDirectory()?.contents[args[1]];
-        return file?.type === 'file' ? file.content : "cat: No such file.";
-      }
-        
-      case 'whoami':
-        return resumeData.name;
-      case 'resume':
-        return `\n${resumeData.name}\n${resumeData.location}\n${resumeData.email}\n${resumeData.linkedin}\n${resumeData.github}\n${resumeData.website}`;
-      case 'education':
-        return resumeData.education;
-      case 'skills':
-        return `Languages:\n- ${resumeData.skills.languages.join('\n- ')}\n\nSoftware:\n- ${resumeData.skills.software.join('\n- ')}`;
-      case 'experience':
-        return resumeData.experience.map(exp => `\n${exp.title} @ ${exp.company} (${exp.duration})\n${exp.description.join('\n')}`).join('\n');
-      case 'projects':
-        return resumeData.projects.map(proj => `\n${proj.name}\n${proj.description}\nGitHub: ${proj.github}`).join('\n');
-      case 'help':
-        return 'Available commands: whoami, resume, education, skills, experience, projects, help, clear, history';
-      case 'history':
-        return commandHistory.slice(0, 10).reverse().join('\n');
-      case 'clear':
-        setOutput([{ type: 'system', content: getPromptString('/root') }]);
-        return null;
-      default:
-        return `Command not found: ${command}`;
-    }
-  };
-
-
-  // Function to render the prompt and input line correctly
-  const renderTerminalLine = (line: { type: string; content: string }, index: number) => {
-    if (line.type === 'command') {
-      // Split the prompt into its two lines
-      const promptLines = getPromptString(pwd).split('\n');
-      return (
-        <div key={index} className="whitespace-pre-wrap">
-          <span className="text-green-500">{promptLines[0]}</span>
-          <br />
-          <span className="text-green-500">{promptLines[1]}</span>
-          <span className="text-white">{line.content}</span>
-        </div>
-      );
-    } else if (line.type === 'system') {
-      // System output is usually the prompt
-      return (
-        <div key={index} className="whitespace-pre-wrap text-green-500">
-          {line.content}
-        </div>
-      );
-    } else {
-      // Regular output
-      return (
-        <div key={index} className={
-          line.type === 'error' ? "whitespace-pre-wrap text-red-500" : 
-          "whitespace-pre-wrap text-white"
-        }>
-          {line.content}
-        </div>
-      );
-    }
-  };
-
-  return ( 
-    <div 
-      className="terminal-container"
-      onClick={() => inputRef.current?.focus()}
-    >
-      {/* Terminal header */}
-      <div className="terminal-header">
-        <div className="window-controls">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
-        </div>
-        <div className="mx-auto text-xs text-gray-300">root@kali: ~</div>
-      </div>
-      
-      {/* Terminal body */}
-      <div 
-        ref={terminalRef}
-        className="h-96 overflow-y-auto p-2 font-mono text-sm"
-      >
-        {output.map((line, index) => renderTerminalLine(line, index))}
-        
-        {/* Input line only after the last prompt */}
-        {output.length > 0 && output[output.length - 1].type === 'system' && (
-          <div className="terminal-input-line flex">
-            <input 
-              ref={inputRef} 
-              type="text" 
-              className="terminal-input bg-transparent outline-none border-none text-white flex-grow" 
-              value={input} 
-              onChange={handleInputChange} 
-              onKeyDown={handleKeyDown} 
-              autoFocus 
-            />
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  help: `Available commands:
+whoami       - Show current user
+resume       - Show resume information
+education    - Show education background
+skills       - Show technical skills
+experience   - Show work experience
+projects     - List featured projects
+hackathon    - Info about upcoming hackathon
+banner       - Show the terminal banner
+easteregg    - Just for fun 👀
+clear        - Clear terminal history
+`
 };
 
-export default KaliTerminal;

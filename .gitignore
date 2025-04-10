@@ -1,3 +1,49 @@
-venv
+# Python
+venv/
+*.pyc
+__pycache__/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
 .env
-node_modules
+.env.local
+.env.development
+.env.test
+.env.production
+.env.example
+
+# Build
+dist/
+build/
+out/
+.next/
+
+# Debug
+*.log
+logs/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Server specific
+server/public/uploads/
