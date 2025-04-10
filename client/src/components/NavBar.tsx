@@ -41,7 +41,12 @@ function NavBar() {
             <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
                 <a href="#about" onClick={(e) => { handleScrollTo(e, 'about'); setIsMenuOpen(false); }}>About</a>
                 <a href="#contact" onClick={(e) => { handleScrollTo(e, 'contact'); setIsMenuOpen(false); }}>Contact</a>
-                <a className="resume-button" id="resume-button" href="http://localhost:5000/resume" target="_blank" rel="noopener noreferrer">Resume</a>
+                <a className="resume-button" id="resume-button" 
+                   href={import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/resume` : 'http://localhost:5000/resume'} 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    Resume
+                </a>
                 <button className="theme-toggle" onClick={toggleTheme}>
                     {theme === 'light' ? '🌙' : '☀️'}
                 </button>
