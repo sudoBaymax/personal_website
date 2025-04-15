@@ -37,7 +37,7 @@ const EmailPopup: React.FC<EmailPopupProps> = ({ onClose }) => {
         }
 
         try {
-            const response = await fetch("/email_list", {
+            const response = await fetch("http://localhost:5000/email_list", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
