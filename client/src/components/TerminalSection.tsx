@@ -13,7 +13,7 @@ export const commands = {
 
     hackathon: "🥷 HackKW 2025 (coming soon)<br />- In-person hackathon for 100-150 builders.<br />- Connects hackers, VCs, founders, and reporters.<br />- A space for misfits who build cool sh*t.",
 
-    easteregg: "👀 You found an Easter Egg!\nRun `cat welcome.txt` in the other terminal 😉",
+    easteregg: "👀 You found an Easter Egg!<br />Run `cat welcome.txt` in the other terminal 😉",
 
     banner: `██████╗ ██╗      █████╗ ███╗   ██╗ ██████╗███████╗
 ██╔══██╗██║     ██╔══██╗████╗  ██║██╔════╝██╔════╝

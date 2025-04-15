@@ -4,6 +4,9 @@ require('dotenv').config();
 const cors = require('cors');
 const path = require('path');
 
+const Email = require('./schema/Email');
+
+
 const app = express();
 
 app.use(express.json());
@@ -24,6 +27,15 @@ app.get("/", (req, res) => {
 app.get("/resume", (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'resume.pdf'));
 });
+
+app.get("/email_list", async (req, res) => {
+    try {
+        const emails = await Email.find();
+        res.json(emails);
+    } catch (err) {
+        res.status(500).json({message: "Server error fetching emails"})
+    }
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
