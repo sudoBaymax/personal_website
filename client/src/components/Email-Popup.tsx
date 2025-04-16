@@ -23,6 +23,10 @@ const EmailPopup: React.FC<EmailPopupProps> = ({ onClose }) => {
         }));
     };
 
+    const sendIntroEmail = () => {
+        
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);

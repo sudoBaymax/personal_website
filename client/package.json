@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@types/node": "^22.13.10",
     "axios": "^1.8.4",
     "boxicons": "^2.1.4",
+    "dotenv": "^16.5.0",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",
