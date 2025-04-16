@@ -37,6 +37,27 @@ app.get("/email_list", async (req, res) => {
     }
 })
 
+app.post("/email_list", async (req, res) => {
+    const { firstName, lastName, email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ message: "Email is required." });
+    }
+
+    try {
+        const existing = await Email.findOne({ email });
+        if (existing) {
+            return res.status(409).json({ message: "Email already subscribed." });
+        }
+
+        const newEmail = new Email({ firstName, lastName, email });
+        await newEmail.save();
+        res.status(201).json({ message: "Successfully subscribed!" });
+    } catch (err) {
+        res.status(500).json({ message: "Error subscribing email." });
+    }
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
