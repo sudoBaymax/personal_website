@@ -19,6 +19,10 @@ function App() {
     setShowEmailPopup(false);
   };
 
+  const sendIntroEmail = () => {
+    
+  }
+
   return (
     <ThemeProvider>
       <div className="wrapper">

@@ -1,4 +1,4 @@
-import emailjs from '@emailjs/browser';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -12,17 +12,17 @@ interface UserData {
  * Placeholder constants for EmailJS configuration.
  * Replace these with your actual EmailJS service ID, template IDs, and user ID.
  */
-const SERVICE_ID = process.env.EMAIL_SERVICE_ID;
-const TEMPLATE_ID_ADMIN = process.env.EMAIL_TEMPLATE_ID_USER;
-const TEMPLATE_ID_USER = process.env.EMAIL_TEMPLATE_ID_ADMIN
-const USER_ID = process.env.EMAIL_USER_ID; 
+const SERVICE_ID = process.env.EMAIL_SERVICE_ID || '';
+const TEMPLATE_ID_ADMIN = process.env.EMAIL_TEMPLATE_ID_USER || '';
+const TEMPLATE_ID_USER = process.env.EMAIL_TEMPLATE_ID_ADMIN || '';
+const USER_ID = process.env.EMAIL_USER_ID || '';
 
 /**
  * Sends an email notification to the admin (jatoujoseph@gmail.com) when a user signs up.
  * @param {UserData} userData - An object containing user information to include in the email.
  * @returns {Promise} - Resolves when the email is sent successfully.
  */
-export const sendAdminNotification = (userData: UserData): Promise<emailjs.EmailJSResponseStatus> => {
+export const sendAdminNotification = (userData: UserData): Promise<EmailJSResponseStatus> => {
   const templateParams = {
     to_email: 'jatoujoseph@gmail.com',
     ...userData,
@@ -36,7 +36,7 @@ export const sendAdminNotification = (userData: UserData): Promise<emailjs.Email
  * @param {UserData} userData - An object containing user information including their email.
  * @returns {Promise} - Resolves when the email is sent successfully.
  */
-export const sendUserInvitation = (userData: UserData): Promise<emailjs.EmailJSResponseStatus> => {
+export const sendUserInvitation = (userData: UserData): Promise<EmailJSResponseStatus> => {
   const templateParams = {
     to_email: userData.email,
     ...userData,
