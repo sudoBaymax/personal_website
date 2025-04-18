@@ -9,7 +9,6 @@ This is my personal website built using the MERN stack (MongoDB, Express.js, Rea
 - Backend built with Express.js and Node.js
 - MongoDB for database management
 - TypeScript for type safety
-- Tailwind CSS for styling (if used)
 - RESTful API architecture
 
 ## Tech Stack
@@ -17,8 +16,6 @@ This is my personal website built using the MERN stack (MongoDB, Express.js, Rea
 - **Frontend:** React.js, Vite, TypeScript, Tailwind CSS (if applicable)
 - **Backend:** Node.js, Express.js, MongoDB
 - **Database:** MongoDB (via Mongoose ORM)
-- **State Management:** Context API / Redux (if used)
-- **Authentication:** JWT / OAuth (if applicable)
 - **Deployment:** Vercel / Netlify (Frontend), AWS / DigitalOcean / Render (Backend & Database)
 
 ## Installation
