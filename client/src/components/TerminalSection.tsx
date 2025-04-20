@@ -1,30 +1,62 @@
 export const commands = {
     whoami: "Joseph Jatou - Software Developer | Ethical Hacker | Builder",
 
-    resume: "Name: Joseph Jatou<br />Location: Kitchener Waterloo Area<br />Email: jatoujoseph@gmail.com<br />LinkedIn: linkedin.com/in/josephjatou<br />GitHub: github.com/sudoBaymax<br />Website: jatou.ca",
+    resume: () => {
+        return "Name: Joseph Jatou\nLocation: Kitchener Waterloo Area\nEmail: jatoujoseph@gmail.com\nLinkedIn: linkedin.com/in/josephjatou\nGitHub: github.com/sudoBaymax\nWebsite: jatou.ca";
+    },
 
-    education: "Wilfrid Laurier University, BSc Computer Science, Minor in Business (Expected 2028)",
+    education: () => {
+        return "Wilfrid Laurier University, Waterloo, Ontario (Expected Graduation: Apr 2028)\nBachelors of Science in Computer Science, Minor in Business Administration";
+    },
 
-    skills: "- C++ (2yrs)<br />- Java (3yrs)<br />- SQL (1yr)<br />- Rust (1yr)<br /><br />Software & Tools:<br />- AWS, GCP, Langchain, Docker, Kubernetes<br />- TensorFlow, Jupyter Notebook, Selenium<br />- Git, Bash, Bootstrap",
+    skills: () => {
+        return "Languages:\n- Python (6 yrs)\n- JavaScript (5 yrs)\n- Java (3 yrs)\n- C++ (2 yrs)\n- SQL (1 yr)\n- Rust (1 yr)\n\nSoftware & Tools:\n- AWS, GCP, Docker, Kubernetes\n- TensorFlow, JupyterNotebook, Selenium\n- Bootstrap, Git";
+    },
 
-    experience: "GLANCE - Co-Founder & Software Engineer (Nov 2024 - Present)<br />- Built a FARM stack app for AI-driven eyewear recommendations.<br />- Created ML models for beauty feature detection (17+ features).<br />- Built dashboards, APIs, and handled market validation (14+ stores).<br /><br />Wilfrid Laurier University - AI Research Intern (Sep 2024 - Jan 2025)<br />- Worked on medical image segmentation.<br />- Built ML pipelines using Docker, Airflow, ETL.<br />- Published paper on tumor detection models with 92% accuracy.",
+    experience: () => {
+        return "GLANCE - Co-Founder & Software Engineer (Nov 2024 - Present)\n- Co-founded Glance, an AI startup providing personalized eyewear recommendations.\n- Developed a full-stack web app using FastAPI, React, and MongoDB.\n- Engineered ML models detecting 7+ beauty traits (e.g., face shape, eye color).\n- Built an API for optical stores to integrate AI-powered product suggestions.\n- Designed an enterprise dashboard for inventory and white-label store management.\n- Conducted 75+ user interviews across 3 countries for market validation.\n\nWILFRID LAURIER UNIVERSITY - AI Research Intern (Sep 2024 - Jan 2025)\n- Collaborated with Dr. Emad Mohammed on AI medical diagnosis research.\n- Authored the initial draft of a benchmarking paper for segmentation models.\n- Built ML pipelines using Airflow, Docker, and ETL systems with avg. F1 score of 0.84.\n- Fine-tuned 12+ tumor detection models on 10,000+ medical images.\n- Accelerated literature review by 25% through analysis of 20+ papers.";
+    },
 
-    projects: "Eyewear Recommendation System<br />- ML & AR-powered AI tool to find ideal glasses.<br />- GitHub: github.com/sudoBaymax<br /><br />SpearPhish - Anti-Phishing Chrome Extension<br />- Detects phishing using AI + browser integration.<br />- GitHub: github.com/sudoBaymax/spearphish<br /><br />Find That Pokémon!<br />- TensorFlow-powered Pokémon image classifier.<br />- GitHub: github.com/sudoBaymax/pokemon-finder",
+    projects: () => {
+        return "Eyewear Recommendation System | Hackathon to Startup (Jan 2025 - Present)\n- Improved face-shape model accuracy by 85%, enabling personalized fits.\n- Built AR try-on using OpenCV and Three.js; tested by 200+ student users.\n\nAnti-Phishing Chrome Extension | Published Chrome Extension (Mar 2025 - Present)\n- Developed a real-time browser extension to detect phishing attacks via DOM & UX signals.\n- Integrated AI-based URL/content analysis and instant user alerts.\n\nFind That Pokémon | Passion Project (Mar 2025 - Apr 2025)\n- Created a dark-mode Pokédex desktop app using Python & CustomTkinter.\n- Built a CNN classifier (95% accuracy) to recognize Pokémon in real-world images.\n- Features included stat visualization, autocomplete, and CSV-backed storage.\n\nTinder for Roommates | Hackathon and Mobile App (Aug 2024 - Sep 2024)\n- Built a React Native mobile app for student roommate matching.\n- Used TypeScript, Vite, and MongoDB; implemented swipe UI and matching algorithm.";
+    },
 
-    hackathon: "🥷 HackKW 2025 (coming soon)<br />- In-person hackathon for 100-150 builders.<br />- Connects hackers, VCs, founders, and reporters.<br />- A space for misfits who build cool sh*t.",
+    activities: () => {
+        return "Event Judge - FBLA CNLC Tech Competition (Jan 2025 - Mar 2025)\nIncubator Entrepreneur - Velocity Incubator (Sep 2025 - Present)\nChoir Singer - Angels Choir, Good Shepherd Chaldean Cathedral (Feb 2016 - Dec 2023)";
+    },
 
-    easteregg: "👀 You found an Easter Egg!<br />Run `cat welcome.txt` in the other terminal 😉",
+    hackathon: () => {
+        return "🥷 HackKW 2025 (coming soon)\n- In-person hackathon for 100-150 builders.\n- Connects hackers, VCs, founders, and reporters.\n- A space for misfits who build cool sh*t.";
+    },
 
-    banner: `██████╗ ██╗      █████╗ ███╗   ██╗ ██████╗███████╗
+    easteregg: "👀 You found an Easter Egg!\nRun `cat welcome.txt` in the other terminal 😉",
+
+    banner: () => {
+        return `
+██████╗ ██╗      █████╗ ███╗   ██╗ ██████╗███████╗
 ██╔══██╗██║     ██╔══██╗████╗  ██║██╔════╝██╔════╝
 ██████╔╝██║     ███████║██╔██╗ ██║██║     █████╗  
 ██╔═══╝ ██║     ██╔══██║██║╚██╗██║██║     ██╔══╝  
 ██║     ███████╗██║  ██║██║ ╚████║╚██████╗███████╗
 ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝
-Type 'help' to get started.
-    `,
+
+Type 'help' to get started.`;
+    },
 
     clear: () => "",
 
-    help: "Available commands:<br />whoami       - Show current user<br />resume       - Show resume information<br />education    - Show education background<br />skills       - Show technical skills<br />experience   - Show work experience<br />projects     - List featured projects<br />hackathon    - Info about upcoming hackathon<br />banner       - Show the terminal banner<br />easteregg    - Just for fun 👀<br />clear        - Clear terminal history"
+    help: () => {
+        return `Available commands:
+whoami       - Show current user
+resume       - Show resume information
+education    - Show education background
+skills       - Show technical skills
+experience   - Show work experience
+projects     - List featured projects
+activities   - Show extracurricular activities
+hackathon    - Info about upcoming hackathon
+banner       - Show the terminal banner
+easteregg    - Just for fun 👀
+clear        - Clear terminal history`;
+    }
 };
