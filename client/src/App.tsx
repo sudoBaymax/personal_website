@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import LandingPage from './pages/LandingPage';
 import Footer from './components/Footer';
 import EmailPopup from './components/Email-Popup';
+import ResumeBrainNetwork from './components/ResumeBrainNetwork';
 import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
@@ -32,6 +33,8 @@ function App() {
         <div className="content-container">
           <LandingPage />
           <TerminalPage />
+          {/* <ResumeCloud /> */}
+          {/* <ResumeBrainNetwork /> */}
         </div>
         <Footer />
         {showEmailPopup && <EmailPopup onClose={handleClosePopup} />}
