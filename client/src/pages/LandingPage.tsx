@@ -29,10 +29,7 @@ function LandingPage() {
             Download Resume
           </button>
 
-      </div>
-
-      {/* About Section */}
-      <AboutSection />
+      </div>      
     </div>
   );
 }
