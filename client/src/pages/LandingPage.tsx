@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import AppStack from "../components/AppStack"; // Import the new component
+import AboutSection from "../components/AboutSection";
 
 function LandingPage() {
   useEffect(() => {
@@ -29,6 +30,9 @@ function LandingPage() {
           </button>
 
       </div>
+
+      {/* About Section */}
+      <AboutSection />
     </div>
   );
 }
