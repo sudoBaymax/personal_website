@@ -2,9 +2,6 @@
 
 This is my personal website built using the MERN stack (MongoDB, Express.js, React.js, Node.js) with Vite and TypeScript.
 
-![image](https://github.com/user-attachments/assets/3c7c289a-4dc8-4a40-abfc-41f877f9f04e)
-![image](https://github.com/user-attachments/assets/2094bf76-1dc6-454a-849f-76454d1817fb)
-![image](https://github.com/user-attachments/assets/7cd36325-3093-4507-9d36-257e2c3cb143)
 
 
 ## Features
