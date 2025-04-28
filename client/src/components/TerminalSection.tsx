@@ -10,7 +10,7 @@ export const commands = {
     },
 
     skills: () => {
-        return "Languages:\n- Python (6 yrs)\n- JavaScript (5 yrs)\n- Java (3 yrs)\n- C++ (2 yrs)\n- SQL (1 yr)\n- Rust (1 yr)\n\nSoftware & Tools:\n- AWS, GCP, Docker, Kubernetes\n- TensorFlow, JupyterNotebook, Selenium\n- Bootstrap, Git";
+        return "Languages: Python (6 yrs), JavaScript (5 yrs), Java (3 yrs), C++ (2 yrs), SQL (1 yr), Rust (1 yr)                                                            Software & Tools:\n- AWS, GCP, Docker, Kubernetes\n- TensorFlow, JupyterNotebook, Selenium\n- Bootstrap, Git";
     },
 
     experience: () => {
@@ -29,7 +29,7 @@ export const commands = {
         return "🥷 HackKW 2025 (coming soon)\n- In-person hackathon for 100-150 builders.\n- Connects hackers, VCs, founders, and reporters.\n- A space for misfits who build cool sh*t.";
     },
 
-    easteregg: "👀 You found an Easter Egg!\nRun `cat welcome.txt` in the other terminal 😉",
+    sudo_easter: "👀 You found an Easter Egg!\nRun `cat welcome.txt` in the other terminal 😉",
 
     banner: () => {
         return `
@@ -47,16 +47,14 @@ Type 'help' to get started.`;
 
     help: () => {
         return `Available commands:
-whoami       - Show current user
-resume       - Show resume information
-education    - Show education background
-skills       - Show technical skills
-experience   - Show work experience
-projects     - List featured projects
-activities   - Show extracurricular activities
-hackathon    - Info about upcoming hackathon
-banner       - Show the terminal banner
-easteregg    - Just for fun 👀
-clear        - Clear terminal history`;
+whoami,
+resume,
+education,
+skills,
+experience,
+projects,
+activities,
+banner,
+clear`;
     }
 };

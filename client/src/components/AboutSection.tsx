@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
 import './AboutSection.css';
 
+import glanceLogo from '../assets/app-logos/glance.png';
+import roomyLogo from '../assets/app-logos/roomy.png';
+import medaiLogo from '../assets/app-logos/medai.png';
+import spearphishLogo from '../assets/app-logos/spearphish.png';
+
 const slides = [
   {
     type: 'project',
     title: 'Glance',
-    image: '../client/src/assets/app-logos/glance.png',
+    image: glanceLogo,
     description: 'Cofounded Glance, a project to elevate interactions.',
   },
   {
     type: 'project',
     title: 'Roomy',
-    image: '/client/src/assets/app-logos/roomy.png',
+    image: roomyLogo,
     description: 'Roomy project logo and description.',
   },
   {
     type: 'project',
     title: 'Medai',
-    image: '/client/src/assets/app-logos/medai.png',
+    image: medaiLogo,
     description: 'Medai project logo and description.',
   },
   {
     type: 'project',
     title: 'Spearphish',
-    image: '/client/src/assets/app-logos/spearphish.png',
+    image: spearphishLogo,
     description: 'Spearphish project logo and description.',
   },
 ];
@@ -43,6 +48,10 @@ const AboutSection = () => {
     );
   };
 
+  // Calculate the transform offset to center the current slide
+  const slideWidth = 100 / slides.length;
+  const translateValue = currentIndex * slideWidth;
+
   return (
     <section className="about-section">
       <h2>About Me</h2>
@@ -52,18 +61,38 @@ const AboutSection = () => {
         <div className="slider-window">
           <div
             className="slider-track"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            style={{
+              transform: `translateX(-${translateValue}%)`,
+              width: `${slides.length * 100}%`
+            }}
           >
             {slides.map((slide, index) => (
-              <div key={index} className="slide">
-                <img src={slide.image} alt={slide.title} />
-                <h3>{slide.title}</h3>
-                <p>{slide.description}</p>
+              <div 
+                key={index} 
+                className={`slide ${index === currentIndex ? 'active' : ''}`}
+                style={{ width: `${slideWidth}%` }}
+              >
+                <div className="slide-content">
+                  <img src={slide.image} alt={slide.title} />
+                  <h3>{slide.title}</h3>
+                  <p>{slide.description}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
         <button className="nav-button right" onClick={nextSlide}>&gt;</button>
+      </div>
+      
+      <div className="slide-indicators">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={`indicator ${currentIndex === index ? 'active' : ''}`}
+            onClick={() => setCurrentIndex(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   );

@@ -78,6 +78,7 @@ const EmailPopup: React.FC<EmailPopupProps> = ({ onClose }) => {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
+                            autoComplete="off"
                             required
                         />
                     </label>
@@ -88,6 +89,7 @@ const EmailPopup: React.FC<EmailPopupProps> = ({ onClose }) => {
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
+                            autocomplete="off"
                             required
                         />
                     </label>
@@ -98,6 +100,7 @@ const EmailPopup: React.FC<EmailPopupProps> = ({ onClose }) => {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
+                            autocomplete="off"
                             required
                         />
                     </label>
