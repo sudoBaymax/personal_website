@@ -17,7 +17,7 @@ const slides = [
     type: 'project',
     title: 'Roomy',
     image: roomyLogo,
-    description: 'Roomy project logo and description.',
+    description: 'Finding the perfect roommates in college is rough, which is why we built Roomy, a tinder-like interface which allows you to find the perfect match.',
   },
   {
     type: 'project',
