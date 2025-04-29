@@ -11,7 +11,7 @@ const slides = [
     type: 'project',
     title: 'Glance',
     image: glanceLogo,
-    description: 'Cofounded Glance, a project to elevate interactions.',
+    description: 'Pinpointing the right eyewear is one of the most tedious tasks in the world! Thousands of options at so many different prices with so many levels of quality, what do I choose? We built Glance to solve this problem through eyewear recommendations, virtual-try-ons, and an-in-built hype system',
   },
   {
     type: 'project',
