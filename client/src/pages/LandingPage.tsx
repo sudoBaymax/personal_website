@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import AppStack from "../components/AppStack"; // Import the new component
-import AboutSection from "../components/AboutSection";
+import SlideshowComponent from "../components/SlideshowComponent";
 
 function LandingPage() {
   useEffect(() => {
@@ -16,7 +16,7 @@ function LandingPage() {
       {/* Hero Section */}
       <h1 className="text-4xl font-bold mb-6">Elevate every interaction, <br />inspire every moment.</h1>
       <p className="text-lg text-gray-600 mb-10">
-      My name is Joseph Jatou— cofounder of Glance, Software Engineer Intern at Voyzi
+      My name is Joseph Jatou— cofounder of Glance, <br />Software Engineer Intern at Voyzi
       </p>
 
       <div className="CTA">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AboutSection.css';
+import './SlideshowComponent.css';
 
 import glanceLogo from '../assets/app-logos/glance.png';
 import roomyLogo from '../assets/app-logos/roomy.png';
@@ -17,23 +17,23 @@ const slides = [
     type: 'project',
     title: 'Roomy',
     image: roomyLogo,
-    description: 'Finding the perfect roommates in college is rough, which is why we built Roomy, a tinder-like interface which allows you to find the perfect match.',
+    description: 'Roomy is a Tinder-style mobile app that helps university students find ideal roommates by swiping on profiles based on shared preferences. Built with the MERN stack and React Native, Roomy uses a smart matching algorithm to connect users based on lifestyle compatibility—covering everything from room type to faith. With a sleek interface, AI-driven recommendations in the pipeline, and in-app chat, Roomy makes finding a roommate easier, faster, and more fun.',
   },
   {
     type: 'project',
     title: 'Medai',
     image: medaiLogo,
-    description: 'Medai project logo and description.',
+    description: 'MedAI is a medical image segmentation benchmarking pipeline that evaluates top models on DICOM and NIfTI data from various imaging modalities. It uses Apache Airflow for preprocessing, PyTorch and MONAI for training, and standard metrics for evaluation. The goal is to build a self-learning AI system to annotate patient scans and create a large anonymized medical image dataset.',
   },
   {
     type: 'project',
     title: 'Spearphish',
     image: spearphishLogo,
-    description: 'Spearphish project logo and description.',
+    description: 'Spearphish is the Chrome extension that detects active phishing threats by analyzing page text and context, inspecting suspicious URLs, and monitoring for stealthy credential-sniffing techniques—even when attackers mimic legit sites. Stay safe from both obvious and covert scams.',
   },
 ];
 
-const AboutSection = () => {
+const SlideshowComponent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -54,8 +54,6 @@ const AboutSection = () => {
 
   return (
     <section className="about-section">
-      <h2>About Me</h2>
-      <p>Explore my blogs, projects, and pictures.</p>
       <div className="slider-container">
         <button className="nav-button left" onClick={prevSlide}>&lt;</button>
         <div className="slider-window">
@@ -98,4 +96,4 @@ const AboutSection = () => {
   );
 };
 
-export default AboutSection;
+export default SlideshowComponent;
