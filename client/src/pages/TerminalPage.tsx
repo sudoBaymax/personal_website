@@ -33,7 +33,7 @@ function TerminalPage() {
                 <h2>
                     If you're not technical, that's completely fine!
                     <br /><br />The window on your left is a terminal (glorified text editor), just type in "help" to see the available commands.
-                    <br /><br />HINT: there is an easter egg command that does something really cool (first 15 people to find it get a starbucks giftcard for 15 Chinese Yen ¥)
+                    <br /><br />HINT: there is an easter egg command that does something really cool (first 15 people to find it get a starbucks giftcard for 15 Iranian Rial ﷼)
                     <br /><br />You also get a giftcard if you give me a SWE internship :)
                 </h2>
             </div>

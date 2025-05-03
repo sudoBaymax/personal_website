@@ -40,7 +40,7 @@
 
 .slide {
   box-sizing: border-box;
-  padding: 30px;
+  padding: 50px;
   background-color: #fff;
   transition: opacity 0.3s, transform 0.3s;
 }
