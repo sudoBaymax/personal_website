@@ -1,8 +1,9 @@
 .footer {
-  background-color: #1e1e1e; /* Dark background */
+  background-color: var(--button-hover); /* Dark background */
   color: #ffffff; /* White text */
   text-align: center;
-  padding: 20px;
+  padding: 40px;
+  margin-top: 50px; 
   position: relative;
   bottom: 0;
   width: 100%;
@@ -13,7 +14,7 @@
 }
 
 .social-links a {
-  color: #00ff00; /* Green links */
+  color: #e6b400; 
   margin: 0 10px;
   text-decoration: none;
 }
