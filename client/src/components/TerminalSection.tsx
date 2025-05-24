@@ -37,7 +37,7 @@ export const commands = {
     },
   
     hackathon: () => {
-      return `🥷 HackKW 2025 (coming soon)\n• 100–150 hackers\n• Meet VCs, founders & media\n• Build weird, fun projects`;
+      return `🥷 Stratos 2026 (coming soon)\n• 100–150 hackers\n• Meet VCs, founders & media\n• Build weird, fun projects`;
     },
   
     sudo_easter: "👀 Easter Egg found! Try `cat welcome.txt` 😏",

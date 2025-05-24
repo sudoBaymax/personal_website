@@ -7,6 +7,13 @@ function LandingPage() {
     // Fetch logic can be added back if needed in the future
   }, []);
 
+  const scrollToTerminal = () => {
+    const terminalSection = document.getElementById('terminal-section');
+    if (terminalSection) {
+      terminalSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="landing-wrapper flex flex-col items-center justify-center">
 
@@ -21,7 +28,10 @@ function LandingPage() {
 
       <div className="CTA">
           {/* Call to Action */}
-          <button className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700">
+          <button 
+            className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700"
+            onClick={scrollToTerminal}
+          >
             Go to Shell
           </button>
 

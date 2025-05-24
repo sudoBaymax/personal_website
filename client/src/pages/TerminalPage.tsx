@@ -15,7 +15,7 @@ function TerminalPage() {
     };
 
     return (
-        <div className="terminal-page-wrapper">
+        <div id="terminal-section" className="terminal-page-wrapper">
             <div className="terminal-functional">
                 <div className="terminal-container">
                     <ReactTerminal 
